@@ -1,32 +1,31 @@
 version: '3.8'
 services:
-      app:
-            build: .
-            container_name: laravel_app
-            volumes:
-                  - .:/var/www
-            ports:
-                  - "8000:8000"
-            depends_on:
-                  - db
+  app:
+    build: .
+    container_name: laravel_app
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
+    depends_on:
       db:
-            image: mysql:8.0
-            container_name: laravel_db
-            restart: always
-            environment:
-                  MYSQL_ROOT_PASSWORD: root
-                  MYSQL_DATABASE: perfectpay
-                  MYSQL_USER: laravel_user
-                  MYSQL_PASSWORD: secret
-            ports:
-                  - "3306:3306"
-      test:
-            image: php:8.2-cli
-            container_name: laravel_tests
-            volumes:
-                  - .:/var/www
-            working_dir: /var/www
-            command: ["vendor/bin/phpunit"]
-            depends_on:
-                  - app
+        condition: service_healthy
+    entrypoint: ["sh", "-c", "sleep 15 && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000"]
+
+  db:
+    image: mysql:8.0
+    container_name: laravel_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: perfectpay
+      MYSQL_USER: laravel_user
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 5
+
 

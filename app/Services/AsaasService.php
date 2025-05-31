@@ -2,8 +2,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
 
-class AsaasService
-{
+class AsaasService {
     protected $apiKey;
     protected $baseUrl = "https://sandbox.asaas.com/api/v3/";
 
@@ -12,17 +11,15 @@ class AsaasService
     }
 
     public function createPayment(array $data) {
-        $response = Http::withHeaders([
+        return Http::withHeaders([
             'Content-Type' => 'application/json',
             'access_token' => $this->apiKey
         ])->post($this->baseUrl . 'payments', [
             'customer' => $data['customer'],
-            'billingType' => $data['billingType'], // Boleto, Cartão de crédito ou Pix
+            'billingType' => $data['billingType'],
             'value' => $data['value'],
             'dueDate' => now()->addDays(3)->toDateString()
-        ]);
-
-        return $response->json();
+        ])->json();
     }
 
     public function getPaymentDetails($paymentId) {

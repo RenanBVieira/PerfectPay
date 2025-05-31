@@ -1,0 +1,15 @@
+use App\Services\AsaasService;
+$asaas = new AsaasService;
+exit
+use App\Services\AsaasService;
+$asaas = new AsaasService();
+exit
+use App\Services\AsaasService;
+$asaas = new AsaasService();
+exit
+use App\Services\AsaasService;
+$asaas = new AsaasService();
+exit
+print_r(scandir(app_path('Services')));
+docker exec -it laravel_app composer dump-autoload --no-dev
+exit
