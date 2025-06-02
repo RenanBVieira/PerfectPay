@@ -21,8 +21,23 @@
                         <form method="POST" action="/processar-pagamento">
                             @csrf
                             <div class="mb-3">
-                                <label for="customer" class="form-label">Nome do Cliente</label>
-                                <input type="text" class="form-control" id="customer" name="customer" required>
+                                <label for="name" class="form-label">Nome do Cliente</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cpf_cnpj" class="form-label">CPF/CNPJ</label>
+                                <input type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Telefone</label>
+                                <input type="text" class="form-control" id="phone" name="phone" required>
                             </div>
 
                             <div class="mb-3">

@@ -21,3 +21,5 @@ php artisan config:clear
 php artisan cache:clear
 php artisan optimize:clear
 exit
+php artisan serve --host=0.0.0.0 --port=8000
+exit

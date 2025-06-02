@@ -48,9 +48,15 @@ Dentro desse arquivo .env, configure as variáveis abaixo para acesso ao banco d
 
 ### Configuração do Docker
 
-Logo em seguida, dentro da pasta raiz netshowme, rode o comando abaixo para a construção do seu contêiner:
+Logo em seguida, dentro da pasta raiz perfectpay, rode o comando abaixo para a construção do seu contêiner:
 ```bash
   docker-compose up --build
+```
+
+### Configuração do Composer
+Logo em seguida, rode o comando abaixo para a instalação das suas dependências:
+```bash
+  composer install
 ```
 
 ## Rotas (opcional)
