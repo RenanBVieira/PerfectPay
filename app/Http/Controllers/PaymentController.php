@@ -9,14 +9,11 @@ class PaymentController extends Controller {
         return view('payment');
     }
 
-    public function processPayment(Request $request, AsaasService $asaasService) {
-        $paymentResponse = $asaasService->createPayment($request->all());
+    public function processPayment(Request $request) {
+        $asaasService = new AsaasService();
+        $response = $asaasService->createPayment($request->all());
 
-        if (!$paymentResponse['success']) {
-            return back()->withErrors(['error' => $paymentResponse['message']]);
-        }
-
-        return redirect()->route('obrigado', ['paymentId' => $paymentResponse['paymentId']]);
+        return response()->json($response);
     }
 
     public function showThankYouPage($paymentId, AsaasService $asaasService) {
